@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Speed Cameras Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-40.9006, 174.8860], 6); // Centered on New Zealand
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Data for speed cameras
+        var cameras = [
+            {name: "Rata Street, New Lynn", lat: -36.906690, lon: 174.678493},
+            {name: "East Coast Road, Redvale", lat: -36.697902, lon: 174.717437},
+            {name: "Ngapipi Road, Orakei", lat: -36.856688, lon: 174.810312},
+            {name: "Tamaki Drive, Parnell", lat: -36.847683, lon: 174.787710},
+            {name: "Hillsborough Road, Hillsborough", lat: -36.922161, lon: 174.754243},
+            {name: "Great North Road, Grey Lynn", lat: -36.866494, lon: 174.738467},
+            {name: "Twin Coast Discovery Highway, Kaiwaka", lat: -36.170245, lon: 174.447012},
+            {name: "Great North Road, Kamo", lat: -35.649532, lon: 174.295668},
+            {name: "West Coast Road, Glen Eden", lat: -36.909258, lon: 174.634322},
+            {name: "Candia Road, Henderson Valley", lat: -36.897066, lon: 174.596018},
+            {name: "Great North Road, Kelston", lat: -36.908900, lon: 174.666421},
+            {name: "Old North Road, Kumeu", lat: -36.776609, lon: 174.576509},
+            {name: "Coatesville -Riverhead Highway, Coatesville", lat: -36.734270, lon: 174.623297},
+            {name: "State Highway 1, Wellsford", lat: -36.329138, lon: 174.546518},
+            {name: "State Highway 17, Albany Heights", lat: -36.714135, lon: 174.674193},
+            {name: "Great North Road, Henderson", lat: -36.879606, lon: 174.635283},
+            {name: "Twin Coast Discovery Highway, Dome Valley", lat: -36.359092, lon: 174.603529},
+            {name: "State Highway 2, Waihi", lat: -37.402826, lon: 175.812433},
+            {name: "Te Awamutu Cambridge Road, Cambridge", lat: -37.924079, lon: 175.434617},
+            {name: "State Highway 2, Pukehina", lat: -37.834581, lon: 176.593268},
+            {name: "State Highway 3, Mokoia", lat: -39.626946, lon: 174.369921},
+            {name: "State Highway 56, Tiakitahuna", lat: -40.402760, lon: 175.500140},
+            {name: "Great South Road, Otahuhu", lat: -36.957346, lon: 174.852735},
+            {name: "Mill Road, Totara Park", lat: -36.995929, lon: 174.922528},
+            {name: "Murphys Road, Totara Park", lat: -36.989559, lon: 174.915508},
+            {name: "Mahia Road, Wattle Downs", lat: -37.038140, lon: 174.888030},
+            {name: "Massey Road, Mangere", lat: -36.976446, lon: 174.800710},
+            {name: "Waiuku Road, Mauku", lat: -37.214831, lon: 174.797426},
+            {name: "Glenbrook Road, Kingseat", lat: -37.171918, lon: 174.797638},
+            {name: "Awhitu Road, Karioitahi", lat: -37.226418, lon: 174.700419},
+            {name: "State Highway 2, Maramarua", lat: -37.253839, lon: 175.239172},
+            {name: "State Highway 2, Waikino", lat: -37.413266, lon: 175.778624},
+            {name: "Main Road, Raglan", lat: -37.833740, lon: 174.917244},
+            {name: "State Highway 29, Te Poi", lat: -37.879988, lon: 175.892010},
+            {name: "Otorohanga Road, Otorohanga", lat: -38.160194, lon: 175.272309},
+            {name: "State Highway 2, Waihi", lat: -37.402826, lon: 175.81243 },
+            {name: "State Highway 1, Ngauranga*", lat: -41.231780, lon: 174.809850},
+            {name: "Wainuiomata Road, Wainuiomata", lat: -41.230198, lon: 174.91905},
+            {name: "Whitford Brown Avenue, Aotea", lat: -41.121885, lon: 174.854932},
+            {name: "State Highway 1, Thorndon*", lat: -41.273876, lon: 174.779398},
+            {name: "Wainui Road, Waiwhetu", lat: -41.227782, lon: 174.915852},
+            {name: "Hutt Road, Korokoro", lat: -41.226858, lon: 174.850459},
+            {name: "State Highway 1, Temuka", lat: -44.256131, lon: 171.274527},
+            {name: "Leeston Road, Springston", lat: -43.643211, lon: 172.426578},
+            {name: "Dunedin Southern Motorway, Burnside", lat: -45.901681, lon: 170.438882},
+            {name: "King Edward Street, South Dunedin", lat: -45.890143, lon: 170.495810},
+            {name: "Otatara Road, New River Ferry", lat: -46.396552, lon: 168.301982},
+            {name: "Maclaggan Street, Dunedin Central", lat: -45.878631, lon: 170.495084},
+            {name: "Wansbeck Street, Oamaru", lat: -45.102626, lon: 170.95561 }
+        ] 
+
+// create a list of cameras from cameras2 that only has the keys street, lat, lon
+
+
+        var cameras = 
+
+// Add markers for each camera
+        cameras.forEach(function(camera) {
+            L.marker([camera.lat, camera.lon]).addTo(map)
+                .bindPopup(camera.name);
+        });
+    </script>
+</body>
+</html>
